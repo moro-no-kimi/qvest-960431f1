@@ -21,8 +21,9 @@ const App = () => (
         <RoleNav />
         <Routes>
           <Route path="/" element={<StudentPage />} />
-          <Route path="/librarian" element={<LibrarianPage />} />
-          <Route path="/district" element={<DistrictPage />} />
+           <Route path="/librarian" element={<LibrarianPage />} />
+           <Route path="/principal" element={<PrincipalPage />} />
+           <Route path="/district" element={<DistrictPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
