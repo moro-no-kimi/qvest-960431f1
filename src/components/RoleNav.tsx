@@ -1,9 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, ClipboardList, BarChart3 } from 'lucide-react';
+import { BookOpen, ClipboardList, School, BarChart3 } from 'lucide-react';
 
 const links = [
   { to: '/', label: 'Student', icon: BookOpen, desc: 'Recommendations' },
   { to: '/librarian', label: 'Librarian', icon: ClipboardList, desc: 'Review workspace' },
+  { to: '/principal', label: 'Principal', icon: School, desc: 'School overview' },
   { to: '/district', label: 'District', icon: BarChart3, desc: 'Pilot dashboard' },
 ];
 

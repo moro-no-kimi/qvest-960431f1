@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import RoleNav from "@/components/RoleNav";
 import StudentPage from "./pages/StudentPage";
 import LibrarianPage from "./pages/LibrarianPage";
+import PrincipalPage from "./pages/PrincipalPage";
 import DistrictPage from "./pages/DistrictPage";
 import NotFound from "./pages/NotFound";
 
