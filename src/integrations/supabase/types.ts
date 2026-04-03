@@ -14,7 +14,261 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      books: {
+        Row: {
+          author: string
+          available: boolean
+          copies_available: number
+          cover_image: string
+          created_at: string
+          description: string
+          genre: string
+          grade_band: string
+          id: string
+          series: string | null
+          title: string
+          total_copies: number
+          updated_at: string
+        }
+        Insert: {
+          author: string
+          available?: boolean
+          copies_available?: number
+          cover_image?: string
+          created_at?: string
+          description?: string
+          genre?: string
+          grade_band?: string
+          id?: string
+          series?: string | null
+          title: string
+          total_copies?: number
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          available?: boolean
+          copies_available?: number
+          cover_image?: string
+          created_at?: string
+          description?: string
+          genre?: string
+          grade_band?: string
+          id?: string
+          series?: string | null
+          title?: string
+          total_copies?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      librarian_actions: {
+        Row: {
+          action: Database["public"]["Enums"]["librarian_action_type"]
+          created_at: string
+          id: string
+          librarian_name: string
+          note: string | null
+          recommendation_id: string
+          student_id: string
+        }
+        Insert: {
+          action: Database["public"]["Enums"]["librarian_action_type"]
+          created_at?: string
+          id?: string
+          librarian_name: string
+          note?: string | null
+          recommendation_id: string
+          student_id: string
+        }
+        Update: {
+          action?: Database["public"]["Enums"]["librarian_action_type"]
+          created_at?: string
+          id?: string
+          librarian_name?: string
+          note?: string | null
+          recommendation_id?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "librarian_actions_recommendation_id_fkey"
+            columns: ["recommendation_id"]
+            isOneToOne: false
+            referencedRelation: "recommendations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "librarian_actions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      recommendations: {
+        Row: {
+          because_you_liked: string[]
+          book_id: string
+          confidence: number
+          created_at: string
+          explanation: string
+          id: string
+          position: number
+          signals: Database["public"]["Enums"]["recommendation_signal"][]
+          status: Database["public"]["Enums"]["recommendation_status"]
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          because_you_liked?: string[]
+          book_id: string
+          confidence?: number
+          created_at?: string
+          explanation?: string
+          id?: string
+          position?: number
+          signals?: Database["public"]["Enums"]["recommendation_signal"][]
+          status?: Database["public"]["Enums"]["recommendation_status"]
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          because_you_liked?: string[]
+          book_id?: string
+          confidence?: number
+          created_at?: string
+          explanation?: string
+          id?: string
+          position?: number
+          signals?: Database["public"]["Enums"]["recommendation_signal"][]
+          status?: Database["public"]["Enums"]["recommendation_status"]
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recommendations_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "recommendations_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      school_metrics: {
+        Row: {
+          approval_rate: number
+          created_at: string
+          current_checkouts: number
+          id: string
+          lift_percent: number
+          override_rate: number
+          pre_baseline_checkouts: number
+          school: string
+          students_reached: number
+          total_students: number
+          updated_at: string
+        }
+        Insert: {
+          approval_rate?: number
+          created_at?: string
+          current_checkouts?: number
+          id?: string
+          lift_percent?: number
+          override_rate?: number
+          pre_baseline_checkouts?: number
+          school: string
+          students_reached?: number
+          total_students?: number
+          updated_at?: string
+        }
+        Update: {
+          approval_rate?: number
+          created_at?: string
+          current_checkouts?: number
+          id?: string
+          lift_percent?: number
+          override_rate?: number
+          pre_baseline_checkouts?: number
+          school?: string
+          students_reached?: number
+          total_students?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      students: {
+        Row: {
+          checkout_count: number
+          created_at: string
+          grade: number
+          homeroom: string
+          id: string
+          name: string
+          school: string
+          updated_at: string
+        }
+        Insert: {
+          checkout_count?: number
+          created_at?: string
+          grade: number
+          homeroom?: string
+          id?: string
+          name: string
+          school?: string
+          updated_at?: string
+        }
+        Update: {
+          checkout_count?: number
+          created_at?: string
+          grade?: number
+          homeroom?: string
+          id?: string
+          name?: string
+          school?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      weekly_trends: {
+        Row: {
+          baseline: number
+          checkouts_per_student: number
+          created_at: string
+          id: string
+          recommendations_exposed: number
+          recommendations_generated: number
+          week: string
+        }
+        Insert: {
+          baseline?: number
+          checkouts_per_student?: number
+          created_at?: string
+          id?: string
+          recommendations_exposed?: number
+          recommendations_generated?: number
+          week: string
+        }
+        Update: {
+          baseline?: number
+          checkouts_per_student?: number
+          created_at?: string
+          id?: string
+          recommendations_exposed?: number
+          recommendations_generated?: number
+          week?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +277,18 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      librarian_action_type: "approved" | "replaced" | "pinned" | "suppressed"
+      recommendation_signal:
+        | "collaborative"
+        | "content"
+        | "popularity"
+        | "series"
+      recommendation_status:
+        | "approved"
+        | "pinned"
+        | "suppressed"
+        | "pending"
+        | "auto-published"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +415,21 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      librarian_action_type: ["approved", "replaced", "pinned", "suppressed"],
+      recommendation_signal: [
+        "collaborative",
+        "content",
+        "popularity",
+        "series",
+      ],
+      recommendation_status: [
+        "approved",
+        "pinned",
+        "suppressed",
+        "pending",
+        "auto-published",
+      ],
+    },
   },
 } as const
