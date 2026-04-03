@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import RoleNav from "@/components/RoleNav";
 import StudentPage from "./pages/StudentPage";
 import LibrarianPage from "./pages/LibrarianPage";
+import PrincipalPage from "./pages/PrincipalPage";
 import DistrictPage from "./pages/DistrictPage";
 import NotFound from "./pages/NotFound";
 
@@ -20,8 +21,9 @@ const App = () => (
         <RoleNav />
         <Routes>
           <Route path="/" element={<StudentPage />} />
-          <Route path="/librarian" element={<LibrarianPage />} />
-          <Route path="/district" element={<DistrictPage />} />
+           <Route path="/librarian" element={<LibrarianPage />} />
+           <Route path="/principal" element={<PrincipalPage />} />
+           <Route path="/district" element={<DistrictPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
